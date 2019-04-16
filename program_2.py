@@ -165,7 +165,7 @@ def ip_network():
 
 def network_interface():
 	cls()
-	f=os.popen("ls | grep /etc/sysconfig/network-scripts/ifcfg-")
+	f=os.popen("ls /etc/sysconfig/network-scripts | grep ifcfg")
 	rd=f.read()
 	f.close()
 	while 1:
