@@ -351,6 +351,9 @@ def name_hosts():
 
 def hosts():
 	cls()
+	q=os.popen("systemctl restart systemd-hostnamed")
+	rq=q.read()
+	q.close()
 	print('Имя локальной машины:')
 	f=os.popen("hostnamectl status")
 	rd=f.read()
