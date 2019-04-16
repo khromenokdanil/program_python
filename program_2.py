@@ -345,7 +345,7 @@ def name_hosts():
 		print('0. Выход')
 		v = input("Введите:")
 		if v == '0':
-			break
+			print(a)
 
 		cls()
 
