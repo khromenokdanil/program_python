@@ -165,7 +165,7 @@ def ip_network():
 
 def network_interface():
 	cls()
-	f=os.popen("ls /etc/sysconfig/network-scripts | grep ifcfg")
+	f=os.popen("ls | grep /etc/sysconfig/network-scripts/ifcfg-")
 	rd=f.read()
 	f.close()
 	while 1:
@@ -329,17 +329,41 @@ def users():
 		cls()
 
 # now, to clear the screen
+
+def name_hosts():
+	cls()
+	print("Введите имя машины:  ")
+	b = input()
+	f=os.popen("hostnamectl set-hostname " + b)
+	rd=f.read()
+	f.close()
+	q=os.popen("systemctl restart systemd-hostnamed")
+	rq=q.read()
+	q.close()
+	while 1:
+		print(rd)
+		print('0. Выход')
+		v = input("Введите:")
+		if v == '0':
+			hosts()
+
+		cls()
+
 def hosts():
 	cls()
-	f = open('/etc/hostname')
-	f=f.read()
+	print('Имя локальной машины:')
+	f=os.popen("hostnamectl status")
+	rd=f.read()
+	f.close()
 	while 1:
-		print(f)
+		print(rd)
+		print('1. Новое имя машины')
 		print('0. Выход')
 		v = input("Введите:")
 		if v == '0':
 			break
-
+		if v == '1':
+			name_hosts()
 		cls()	
 
 cls()
